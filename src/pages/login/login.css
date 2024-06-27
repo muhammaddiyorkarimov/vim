@@ -1,0 +1,107 @@
+.login {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 100%;
+	min-height: 100vh;
+	padding: 0 50px;
+	margin: 0 auto;
+}
+
+.login-wrapper {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	flex-wrap: wrap;
+	gap: 50px;
+}
+
+.login-info {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.login-info .logo {
+	margin-bottom: 80px;
+	text-align: center;
+}
+
+.login-info .title {
+	line-height: 30px;
+	text-align: center;
+}
+
+.login-info .title h1 {
+	color: var(--primary-black-color1);
+	font-size: 48px;
+	font-weight: 600;
+	margin-bottom: 10px;
+}
+.login-info .title p {
+	color: var(--primary-black-color2);
+	font-size: 14px;
+	font-weight: 400;
+}
+
+.login-image {
+	width: 600px;
+}
+
+.login-image img {
+	width: 100%;
+	object-fit: cover;
+}
+
+.login-section {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+
+.login-section label {
+	color: var(--primary-black-color1);
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
+}
+
+.login-section label span {
+	font-size: 16px;
+	font-weight: 400;
+}
+
+.login-section label input {
+	padding: 15px;
+	background-color: #F9F8FA;
+	border: none;
+	border-radius: 8px;
+	color: var(--primary-color2);
+	font-weight: 200;
+	font-size: 14px;
+	max-width: 600px;
+	width: 100%;
+}
+
+.login-section label input:focus {
+	outline: none;
+}
+
+.login-section button {
+	font-size: 18px;
+	border: none;
+	background-color: #607AFB;
+	padding: 10px 35px;
+	border-radius: 8px;
+	color: #fff;
+}
+
+/* for register page*/
+.connect-wrapper {
+	display: flex;
+	gap: 30px;
+}
+
+.register-info .logo{
+	margin-bottom: 20px;
+}
