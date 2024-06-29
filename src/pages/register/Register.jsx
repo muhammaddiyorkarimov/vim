@@ -7,18 +7,30 @@ import images from './../../images/index';
 // ui
 import UiInput from '../../ui/UiInput';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { signInUserStart, signInUserSuccess, signInUserFailure } from '../../features/auth/authSlice';
+import AuthService from '../../service/auth';
 
 
 function Register() {
 
 	const [name, setName] = useState('')
-	const [surname, setSurname] = useState('')
-	const [phoneNumber, setPhoneNumber] = useState('')
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 
-	const handleSubmit = (e) => {
+	const dispatch = useDispatch()
+	const { isLoading } = useSelector(state => state.auth)
+
+	const handleSubmit = async (e) => {
 		e.preventDefault()
+		dispatch(signInUserStart())
+		const user = {"username": name, email, password}
+		try {
+			const response = await AuthService.userRegister(user)
+			dispatch(signInUserSuccess(response.user))
+		} catch (error) {
+			dispatch(signInUserFailure(error.response.data.errors))
+		}
 	}
 
 	return (
@@ -34,28 +46,18 @@ function Register() {
 					</div>
 					<form onSubmit={handleSubmit} className="login-section">
 						<label>
-							<span>Ismingiz</span>
-							<UiInput type="text" label="Name" state={name} setState={setName} />
+							<span>F.I.O</span>
+							<UiInput type="text" label="name" state={name} setState={setName} />
 						</label>
 						<label>
-							<span>Familiyangiz</span>
-							<UiInput type="text" label="surname" state={surname} setState={setSurname} />
+							<span>Email</span>
+							<UiInput type="email" label="email" state={email} setState={setEmail} />
 						</label>
-						<div className="connect-wrapper">
-							<label>
-								<span>Telefon raqam</span>
-								<UiInput type="number" label="Phone number" state={phoneNumber} setState={setPhoneNumber} />
-							</label>
-							<label>
-								<span>Email</span>
-								<UiInput type="email" label="Email" state={email} setState={setEmail} />
-							</label>
-						</div>
 						<label>
 							<span>Password</span>
-							<UiInput type="text" label="Password" state={password} setState={setPassword} />
+							<UiInput type="password" label="Password" state={password} setState={setPassword} />
 						</label>
-						<button>Ro'yxatdan o'tish</button>
+						<button disabled={isLoading}>{isLoading ? 'Loading...' : "Ro'yxatdan o'tish"}</button>
 					</form>
 				</div>
 				<div className="login-image">
